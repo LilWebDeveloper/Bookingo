@@ -1,0 +1,13 @@
+.logo{
+    padding-top: 0.5em;
+    padding-left: 3%;
+    text-align: left;
+}
+.login{
+    padding-top: 1em;
+    padding-right: 3%;
+    text-align: right;
+}
+.logoIMG{
+    width: 7rem;
+}

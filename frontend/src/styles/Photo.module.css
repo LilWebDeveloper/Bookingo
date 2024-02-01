@@ -1,0 +1,30 @@
+.img{
+    height: 50%;
+}
+
+@media (max-width: 600px) {
+    img {
+        width: 100%;
+        max-width: 100px;
+    }
+}
+
+@media (min-width: 601px) {
+    img {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+.grid {
+    direction: 'row';
+}
+@media (min-width: 1535px) {
+    .grid {
+        direction: 'collumn-reverse';
+    }
+}
+.imgCompany{
+    border-radius: 15px;
+    border: 2px solid rgb(62, 62, 62);
+}
