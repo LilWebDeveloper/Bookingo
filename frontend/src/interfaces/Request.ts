@@ -1,0 +1,3 @@
+interface RequestType {
+    request: Request
+}

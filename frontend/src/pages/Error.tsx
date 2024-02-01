@@ -1,7 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-
-import classes from '../style/Error.module.css'
+import classes from '../styles/Error.module.css'
 
 const ErrorContent = () => {
 

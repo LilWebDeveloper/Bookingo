@@ -1,7 +1,7 @@
 import { LoginType } from "../../interfaces/Login";
 import {setExpirationToLocalStorage, setTokenToLocalStorage} from "../../utils/Token"
 
-export default async function loginAction({ request }: any) {
+export default async function loginAction({ request }: RequestType) {
     const data: FormData = await request.formData();
     const authData = {
       login: data.get("login"),
@@ -25,7 +25,6 @@ export default async function loginAction({ request }: any) {
     }
   
     const resData: LoginType = await response.json();
-    console.log(resData)
     const token = resData.token;
   
     setTokenToLocalStorage(token);

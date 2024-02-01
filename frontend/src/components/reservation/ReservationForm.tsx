@@ -7,7 +7,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { Button, MenuItem, Box, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, useRouteLoaderData } from "react-router-dom";
+import { json, useNavigate, useRouteLoaderData } from "react-router-dom";
 
 const ReservationForm = ({
   employees,
@@ -19,8 +19,6 @@ const ReservationForm = ({
   const [reservation, setReservation] = useState<Date | null>(null);
 
   const navigate = useNavigate();
-
-  console.log(reservations);
 
   const token = useRouteLoaderData("token-loader") as string;
 
@@ -52,7 +50,7 @@ const ReservationForm = ({
       setReservation(null);
       navigate("/rezerwacje");
     } catch (error) {
-      console.log(error);
+      return json({message: 'Rezerwacja nie przyjęta'})
     }
   };
 
@@ -67,7 +65,7 @@ const ReservationForm = ({
       reservations.filter((reservation) =>
         dayjs(reservation.date).isSame(date, "day")
       ).length >= 24
-    ); // 24 godziny w dniu
+    );
   };
   const disabledEmployees = reservations.map(
     (reservation) => reservation.employeeId

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import Reservation from "../models/Reservation";
 import jwtDecode from "jwt-decode";
+import DecodeTokenType from "../interfaces/DecodeTokenType";
 
 const createReservation = async (
   req: Request,
@@ -9,7 +10,7 @@ const createReservation = async (
   next: NextFunction
 ) => {
   const token: string = req.body.userId
-  const decode: any = jwtDecode(token)
+  const decode: DecodeTokenType = jwtDecode(token)
 
   const userId = decode.userId
 
@@ -34,7 +35,7 @@ const userReservation = async (
   next: NextFunction
 ) => {
   const token = req.headers.authorization!;
-  const decode: any = jwtDecode(token)
+  const decode: DecodeTokenType = jwtDecode(token)
   const userId = decode.userId
 
   return Reservation.find({ userId: `${userId}` })
