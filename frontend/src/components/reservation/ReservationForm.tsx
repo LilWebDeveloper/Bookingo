@@ -20,6 +20,8 @@ const ReservationForm = ({
 
   const navigate = useNavigate();
 
+  console.log(reservations);
+
   const token = useRouteLoaderData("token-loader") as string;
 
   const date = new Date(reservation!);
@@ -57,6 +59,20 @@ const ReservationForm = ({
   const tenAM = dayjs().set("hour", 10).startOf("hour");
   const twentyPM = dayjs().set("hour", 20).startOf("hour");
 
+  const shouldDisableDate = (date: dayjs.Dayjs) => {
+    return (
+      reservations.some((reservation) =>
+        dayjs(reservation.date).isSame(date, "day")
+      ) &&
+      reservations.filter((reservation) =>
+        dayjs(reservation.date).isSame(date, "day")
+      ).length >= 24
+    ); // 24 godziny w dniu
+  };
+  const disabledEmployees = reservations.map(
+    (reservation) => reservation.employeeId
+  );
+
   return (
     <Box
       component="div"
@@ -74,6 +90,7 @@ const ReservationForm = ({
             <h3>Umów sie na wizyte poniżej</h3>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateTimePicker
+                shouldDisableDate={shouldDisableDate}
                 sx={{ minWidth: "80%" }}
                 ampm={false}
                 label="Wybierz date i godzine wizyty"

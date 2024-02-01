@@ -7,6 +7,11 @@ interface ReservationType {
   _id: string;
 }
 
+interface Reservations {
+  date?: string;
+  _id?: string;
+}
+
 interface ReservationsType {
   reservation: ReservationType[];
 }
@@ -14,8 +19,5 @@ interface ReservationsType {
 interface ReservationForm {
   employees: EmployeeType[];
   services: ServiceType[];
-  reservations: {
-    data?: string;
-    _id?: string;
-  };
+  reservations: ReservationType[];
 }

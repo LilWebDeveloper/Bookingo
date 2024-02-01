@@ -17,6 +17,7 @@ import UserReservations from "./components/reservation/UserReservations";
 import ReservationLoader from "./services/loaders/ReservationsLoader";
 import registerAction from "./services/actions/RegisterAction";
 import RegisterForm from "./components/RegisterForm";
+import ErrorContent from "./pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -33,39 +34,44 @@ const router = createBrowserRouter([
         action: loginAction,
         children: [
           {
-            index: true,
-            element: <Home />,
-            loader: highRateCompanyLoader,
-          },
-          {
-            path: "fryzjer",
-            element: <CompanyList />,
-            loader: hairdressersCompanyLoader,
-          },
-          {
-            path: "salon-kosmetyczny",
-            element: <CompanyList />,
-            loader: beautySalonsLoader,
-          },
-          {
-            path: "masaz",
-            element: <CompanyList />,
-            loader: massagesCompanyLoader,
-          },
-          {
-            path: ":companyId",
-            element: <CompanyItem />,
-            loader: CompanyLoader,
-          },
-          {
-            path: "rezerwacje",
-            element: <UserReservations />,
-            loader: ReservationLoader,
-          },
-          {
-            path: "zarejestrujsie",
-            element: <RegisterForm />,
-            action: registerAction,
+            errorElement: <ErrorContent />,
+            children: [
+              {
+                index: true,
+                element: <Home />,
+                loader: highRateCompanyLoader,
+              },
+              {
+                path: "fryzjer",
+                element: <CompanyList />,
+                loader: hairdressersCompanyLoader,
+              },
+              {
+                path: "salon-kosmetyczny",
+                element: <CompanyList />,
+                loader: beautySalonsLoader,
+              },
+              {
+                path: "masaz",
+                element: <CompanyList />,
+                loader: massagesCompanyLoader,
+              },
+              {
+                path: ":companyId",
+                element: <CompanyItem />,
+                loader: CompanyLoader,
+              },
+              {
+                path: "rezerwacje",
+                element: <UserReservations />,
+                loader: ReservationLoader,
+              },
+              {
+                path: "zarejestrujsie",
+                element: <RegisterForm />,
+                action: registerAction,
+              },
+            ],
           },
         ],
       },

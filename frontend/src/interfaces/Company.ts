@@ -20,9 +20,6 @@ interface RecomendedCompany {
 interface CompanyInfo {
   company: CompanyType;
   employee: EmployeeType[];
-  reservation: {
-    date: string;
-    _id: string;
-  };
+  reservation: ReservationType[]
   service: ServiceType[];
 }
